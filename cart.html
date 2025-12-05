@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crunchy Treats - Cart</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+    body{background:#fff;color:#333;}
+    header{background:#ffb74d;padding:20px;text-align:center;}
+    header h1{color:#fff;}
+    nav{margin-top:10px;}
+    nav a{margin:0 15px;text-decoration:none;color:#fff;font-weight:bold;}
+    .cart-container{max-width:800px;margin:20px auto;padding:10px;}
+    table{width:100%;border-collapse:collapse;}
+    th, td{padding:10px;border:1px solid #ddd;text-align:center;}
+    button{padding:5px 10px;background:#ffb74d;border:none;color:#fff;border-radius:5px; cursor:pointer;}
+    .total{text-align:right;margin-top:10px;font-size:18px;}
+    footer{background:#ffb74d;text-align:center;padding:10px;color:#fff;margin-top:20px;}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Crunchy Treats</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<div class="cart-container">
+  <h2>Your Cart</h2>
+  <table id="cart-table">
+    <thead>
+      <tr><th>Product</th><th>Price</th><th>Action</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="total">Total: ₹<span id="total-price">0</span></div>
+  <button onclick="checkout()">Proceed to Checkout</button>
+</div>
+
+<footer>
+  &copy; 2025 Crunchy Treats. All rights reserved.
+</footer>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const tbody = document.querySelector('#cart-table tbody');
+  const totalPriceEl = document.getElementById('total-price');
+
+  function renderCart(){
+    tbody.innerHTML = '';
+    let total = 0;
+    cart.forEach((item,index)=>{
+      total += item.price;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${item.name}</td><td>₹${item.price}</td><td><button onclick="removeItem(${index})">Remove</button></td>`;
+      tbody.appendChild(tr);
+    });
+    totalPriceEl.textContent = total;
+  }
+
+  function removeItem(index){
+    cart.splice(index,1);
+    localStorage.setItem('cart',JSON.stringify(cart));
+    renderCart();
+  }
+
+  function checkout(){
+    if(cart.length===0){alert("Your cart is empty!"); return;}
+    window.location.href="payment.html";
+  }
+
+  renderCart();
+</script>
+
+</body>
+</html>
