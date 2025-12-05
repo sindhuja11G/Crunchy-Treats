@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crunchy Treats - Checkout</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+    body{background:#fff;color:#333;}
+    header{background:#ffb74d;padding:20px;text-align:center;}
+    header h1{color:#fff;}
+    nav{margin-top:10px;}
+    nav a{margin:0 15px;text-decoration:none;color:#fff;font-weight:bold;}
+    .checkout-container{max-width:500px;margin:20px auto;padding:10px;}
+    label{display:block;margin-top:10px;}
+    input, select{width:100%; padding:8px; margin-top:5px; border-radius:5px; border:1px solid #ccc;}
+    button{margin-top:15px;padding:10px 20px;background:#ffb74d;border:none;color:#fff;border-radius:5px; cursor:pointer;}
+    footer{background:#ffb74d;text-align:center;padding:10px;color:#fff;margin-top:20px;}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Crunchy Treats</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<div class="checkout-container">
+  <h2>Checkout</h2>
+  <form id="checkout-form">
+    <label>Name</label>
+    <input type="text" id="name" required>
+
+    <label>Delivery Area</label>
+    <select id="area" required>
+      <option value="">Select Area</option>
+      <option value="Downtown">Downtown</option>
+      <option value="Uptown">Uptown</option>
+      <option value="Suburbs">Suburbs</option>
+    </select>
+
+    <label>Payment Method</label>
+    <select id="payment" required>
+      <option value="">Select Payment</option>
+      <option value="Cash on Delivery">Cash on Delivery</option>
+      <option value="UPI">UPI</option>
+      <option value="Card">Card</option>
+    </select>
+
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 Crunchy Treats. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById('checkout-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if(cart.length===0){alert("Your cart is empty!"); return;}
+    localStorage.removeItem('cart');
+    alert("Order placed successfully!");
+    window.location.href="thankyou.html";
+  });
+</script>
+
+</body>
+</html>
