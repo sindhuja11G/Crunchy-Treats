@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crunchy Treats - Home</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+    body {background:#fff; color:#333;}
+    header {background:#ffb74d; padding:20px; text-align:center;}
+    header h1 {color:#fff;}
+    nav {margin-top:10px;}
+    nav a {margin:0 15px; text-decoration:none; color:#fff; font-weight:bold;}
+    .hero {text-align:center; padding:50px 20px; background:#ffe0b2;}
+    .hero h2 {margin-bottom:20px;}
+    .hero a {padding:10px 20px; background:#ffb74d; color:#fff; text-decoration:none; border-radius:5px;}
+    .products-preview {display:flex; flex-wrap:wrap; justify-content:center; margin:20px;}
+    .product-card {border:1px solid #ddd; border-radius:8px; margin:10px; width:200px; text-align:center; padding:10px;}
+    .product-card img {width:100%; border-radius:8px;}
+    footer {background:#ffb74d; text-align:center; padding:10px; color:#fff; margin-top:20px;}
+    @media(max-width:600px){.products-preview{flex-direction:column; align-items:center;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Crunchy Treats</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Delicious Biscuits Delivered to Your Doorstep!</h2>
+  <a href="products.html">Shop Now</a>
+</section>
+
+<section class="products-preview">
+  <div class="product-card">
+    <img src="https://via.placeholder.com/200x150?text=Choco+Chip" alt="Choco Chip">
+    <h3>Choco Chip</h3>
+    <p>₹50</p>
+    <button onclick="addToCart('Choco Chip', 50)">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <img src="https://via.placeholder.com/200x150?text=Butter+Cookie" alt="Butter Cookie">
+    <h3>Butter Cookie</h3>
+    <p>₹40</p>
+    <button onclick="addToCart('Butter Cookie', 40)">Add to Cart</button>
+  </div>
+  <div class="product-card">
+    <img src="https://via.placeholder.com/200x150?text=Oatmeal" alt="Oatmeal">
+    <h3>Oatmeal</h3>
+    <p>₹60</p>
+    <button onclick="addToCart('Oatmeal', 60)">Add to Cart</button>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Crunchy Treats. All rights reserved.
+</footer>
+
+<script>
+  function addToCart(name, price){
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({name:name, price:price});
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(name + ' added to cart!');
+  }
+</script>
+
+</body>
+</html>
